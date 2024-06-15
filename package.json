@@ -26,6 +26,7 @@
     "react-email": "^2.1.4",
     "react-hook-form": "^7.51.5",
     "resend": "^3.2.0",
+    "usehooks-ts": "^3.1.0",
     "zod": "^3.23.8"
   },
   "devDependencies": {
