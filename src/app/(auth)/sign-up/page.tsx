@@ -1,5 +1,4 @@
 "use client";
-
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import * as z from "zod";
@@ -53,7 +52,8 @@ const Page = () => {
 					const response = await axios.get(
 						`/api/check-username-unique?username=${username}`
 					);
-					setUsernameMessage(response.data.message);
+					let message = response.data.message;
+					setUsernameMessage(message);
 				} catch (error) {
 					const axiosError = error as AxiosError<ApiResponse>;
 					setUsernameMessage(
@@ -120,8 +120,18 @@ const Page = () => {
 											}}
 										/>
 									</FormControl>
-									{isCheckingUsername && <Loader2 className="animate-spin" />}
-									<FormMessage>{usernameMessage}</FormMessage>
+
+									<FormMessage>
+										{isCheckingUsername && <Loader2 className="animate-spin" />}
+										<p
+											className={`text-sm ${
+												usernameMessage === "Username is unique"
+													? "text-green-500"
+													: "text-red-500"
+											}`}>
+											test {usernameMessage}
+										</p>
+									</FormMessage>
 								</FormItem>
 							)}
 						/>
